@@ -8,14 +8,14 @@ class AdminSiteTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.admin_user = get_user_model().object.create_superuser(
-            email = 'admin@zarif.com',
-            password = 'pass123'
+            email='admin@zarif.com',
+            password='pass123'
         )
         self.client.force_login(self.admin_user)
         self.user = get_user_model().object.create_user(
-            email = 'test1213@zarif.com',
-            password = 'pass123',
-            name = 'django bhai'
+            email='test1213@zarif.com',
+            password='pass123',
+            name='django bhai'
         )
 
     def test_users_listed(self):
@@ -39,4 +39,3 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
-        
