@@ -6,6 +6,7 @@ from Restaurants import views
 
 router = DefaultRouter()
 router.register('tags', views.TagViewSet)
+router.register('items', views.itemViewSet)
 
 app_name = 'Restaurants'
 

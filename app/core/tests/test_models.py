@@ -9,7 +9,6 @@ def sample_user(email='test123@zarif.com', password='test123'):
     return get_user_model().object.create_user(email, password)
 
 
-
 class ModelTests(TestCase):
 
     def test_create_user_email_successfully(self):
@@ -49,9 +48,17 @@ class ModelTests(TestCase):
     def test_tag_str(self):
         """Test the tag string representation"""
         tag = models.Tag.object.create(
-            user = sample_user(),
-            name = 'Title'
+            user=sample_user(),
+            name='Title'
         )
 
         self.assertEqual(str(tag), tag.name)
-        
+
+    def test_items_str(self):
+        """Test the items string represntation"""
+        item = models.Item.object.create(
+            user=sample_user(),
+            name='Burger'
+        )
+
+        self.assertEqual(str(item), item.name)

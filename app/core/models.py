@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
 from django.conf import settings
 
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
@@ -46,6 +47,20 @@ class Tag(models.Model):
     )
 
     object = UserManager()
-    
+
+    def __str__(self):
+        return self.name
+
+
+class Item(models.Model):
+    """Item to be used in a restaurants"""
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+    object = UserManager()
+
     def __str__(self):
         return self.name
